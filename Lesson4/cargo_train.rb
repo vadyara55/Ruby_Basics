@@ -1,8 +1,6 @@
 class CargoTrain < Train
-  def initialize(name)
+  def initialize()
     super
-    @name = name
     @type = "Грузовой"
-    @vans << CargoVan.new()
   end
 end

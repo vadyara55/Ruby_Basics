@@ -1,4 +1,4 @@
-class CargoVan < Van
+class CargoWagon < Wagon
   def initialize()
     @type = "Грузовой"
   end
