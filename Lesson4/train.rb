@@ -62,8 +62,8 @@ class Train
 
   protected
 
-     attr_writer :speed, :name, :station_index, :station, :route, :vans, :type
+     attr_writer :speed, :name, :station_index, :station, :route, :wagons, :type
   # Не нужно ,чтобы ползователь имел возможность изменять их самостоятельно
   # используя произвольные значения.
-  
+
 end

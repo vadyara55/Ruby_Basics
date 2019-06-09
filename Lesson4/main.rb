@@ -214,3 +214,6 @@ class Main
     !!!!!!!!!!"
   end
 end
+
+test = Main.new
+test.run
