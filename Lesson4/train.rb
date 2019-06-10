@@ -36,12 +36,12 @@ class Train
   end
 
   def previous_station
-    return unless station_index - 1 >= 0
+    return unless station_index > 0
     route.stations[station_index - 1]
   end
 
   def current_station
-    route_stations(station_index)
+    route.stations(station_index)
   end
 
   def move_forward
@@ -62,7 +62,7 @@ class Train
 
   protected
 
-     attr_writer :speed, :name, :station_index, :station, :route, :wagons, :type
+  attr_writer :speed, :name, :station_index, :station, :route, :wagons, :type
   # Не нужно ,чтобы ползователь имел возможность изменять их самостоятельно
   # используя произвольные значения.
 
