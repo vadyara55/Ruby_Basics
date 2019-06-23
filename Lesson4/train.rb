@@ -20,7 +20,7 @@ class Train
     @wagons << wagon
   end
 
-  def detach_wagon
+  def detach_wagon # Не понимаю зачем методу принимать удаляемый объект - вагон. Вагоны удаляются по 1 же.
     @wagons.delete_at(-1) if self.speed == 0 && @wagons.count > 1
   end
 
