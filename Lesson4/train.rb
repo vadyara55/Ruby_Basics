@@ -1,5 +1,5 @@
 class Train
-  attr_reader :speed, :name, :station_index, :station, :route, :wagons, :type
+  attr_reader :speed, :name, :station_index, :route, :wagons, :type
 
   def initialize(name)
     @name = name
@@ -26,9 +26,7 @@ class Train
 
   def add_route(route)
     @route = route
-    self.station = route.stations[0]
-    self.station_index = route.stations.index(station)
-    station.arrived(self)
+    @station_index = 0
   end
 
   def next_station
@@ -41,7 +39,7 @@ class Train
   end
 
   def current_station
-    route.stations(station_index)
+    route.stations[station_index]
   end
 
   def move_forward

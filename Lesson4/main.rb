@@ -184,11 +184,10 @@ class Main
 
   def train_on_station # поезда на станции, ЗДЕСЬ ПЫТАЛСЯ ИСПОЛЬЗОВАТЬ МЕТОД select_from_sation, но не вышло. Вернул к первоначальному виду
     show_stations
-    print "Введите номер станции: "
-    number = gets.chomp.to_i
-    return error if !(1..@stations.length).include?(number) # проверка
-    puts "Список поездов на станции: "
-    puts @stations[number - 1].trains # поезда на станции
+    station = select_from_collection(@stations)
+    return error if station.nil?
+    puts "Поезда на станции #{station.name}"
+    puts station.trains
   end
 
   def blank
