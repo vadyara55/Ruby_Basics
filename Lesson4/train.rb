@@ -27,6 +27,7 @@ class Train
   def add_route(route)
     @route = route
     @station_index = 0
+    current_station.arrived(self)
   end
 
   def next_station

@@ -116,7 +116,7 @@ class Main
     route = select_from_collection(@routes)
 
     show_stations
-    station = select_from_collection(route.stations)
+    station = select_from_collection(@stations)
     return if [route.stations.first, route.stations.last].include?(station)
     route.delete(station)
   end
@@ -159,8 +159,11 @@ class Main
   def attach_wagon # прикрепить вагон
     show_trains
     train = select_from_collection(@trains)
-    wagon = PassengerWagon.new() if train.type == "Пассажирский" # к пассажирскому добавляется только пассажирский
-    wagon = CargoWagon.new() if train.type == "Грузовой" # аналогично верхнему
+
+    wagon = case train
+            when PassengerTrain then PassengerWagon.new
+            when CargoTrain then CargoTrain.new
+            end
     train.attach_wagon(wagon) # присоединяем
   end
 
