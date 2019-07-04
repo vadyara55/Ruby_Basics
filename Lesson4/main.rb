@@ -85,7 +85,7 @@ class Main
       puts "Чтобы создать маршрут,нужно хотя бы 2 станции."
       return
     end
-    show_stations
+    show_stations(@stations)
     print "Введите номер начальной станции: "
     first_station = select_from_collection(@stations)
     print "Введите номер конечной: "
@@ -105,25 +105,25 @@ class Main
     show_routes
     route = select_from_collection(@routes)
 
-    show_stations
+    show_stations(@stations)
     station = select_from_collection(@stations)
 
     route.add_station(station)
   end
 
-  def delete_station # удалить станцию
+  def delete_station
     show_routes
     route = select_from_collection(@routes)
 
-    show_stations
+    show_stations(route.stations)
     station = select_from_collection(@stations)
     return if [route.stations.first, route.stations.last].include?(station)
     route.delete(station)
   end
 
-  def show_stations # показать станцию
+  def show_stations(route_station) # показать станцию
     puts "Список станций:"
-    @stations.each.with_index(1) do |item, index|
+    route_station.each.with_index(1) do |item, index|
       puts "#{index} - #{item.name}"
     end
   end
