@@ -116,7 +116,7 @@ class Main
     route = select_from_collection(@routes)
 
     show_stations(route.stations)
-    station = select_from_collection(@stations)
+    station = select_from_collection(route.stations)
     return if [route.stations.first, route.stations.last].include?(station)
     route.delete(station)
   end
