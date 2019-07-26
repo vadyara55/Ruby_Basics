@@ -1,7 +1,7 @@
 class Train
   include Corporation
   include InstanceCounter
-  attr_reader :speed, :name, :station_index, :route, :wagons, :type
+  attr_reader :speed, :name, :station_index, :route, :wagons, :type, :number
 
   @@trains = {}
 
@@ -71,8 +71,6 @@ class Train
 
   protected
 
-  attr_writer :speed, :name, :station_index, :station, :route, :wagons, :type
-  # Не нужно ,чтобы ползователь имел возможность изменять их самостоятельно
-  # используя произвольные значения.
+  attr_writer :speed, :name, :station_index, :station, :route, :wagons, :type, :number
 
 end

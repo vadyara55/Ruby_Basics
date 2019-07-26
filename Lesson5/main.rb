@@ -63,16 +63,19 @@ class Main
   def create_station # создать станцию
     print "Введите название станции: "
     name = gets.chomp
+
     @stations.push(Station.new(name)) # создает станцию как объект и в массив отправляет
   end
 
   def create_train # создать поезд
+    print "Введите название поезда: "
+    name = gets.chomp
     print "Введите номер поезда поезда: "
     number = gets.chomp
     show_train_type_menu
     case gets.to_i
-    when 1 then @trains << PassengerTrain.new(number)
-    when 2 then @trains << CargoTrain.new(number)
+    when 1 then @trains << PassengerTrain.new(name, number)
+    when 2 then @trains << CargoTrain.new(name, number)
     end
   end
 
@@ -123,7 +126,7 @@ class Main
     route.delete(station)
   end
 
-  def show_stations(stations) # показать станцию
+  def show_stations(stations = @stations) # показать станцию
     puts "Список станций:"
     stations.each.with_index(1) do |item, index|
       puts "#{index} - #{item.name}"
