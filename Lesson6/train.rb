@@ -4,7 +4,7 @@ class Train
 
   attr_reader :speed, :station_index, :route, :wagons, :type, :number
 
-  TRAIN_NUMBER_FORMAT = /^[а-я0-9]{3}(-| )[а-я0-9]{2}$/i
+  TRAIN_NUMBER_FORMAT = /^[а-я0-9]{3}(-|)[а-я0-9]{2}$/i
   TRAIN_TYPE = /^(Passenger|Cargo)$/
   INCORRECT_NUMBER = "Некорректный номер"
   INCORRECT_TRAIN_TYPE = "Некорректный тип поезда"

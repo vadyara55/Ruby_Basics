@@ -45,6 +45,6 @@ class Station
 
   def validate!
     raise STATION_NIL if name.empty?
-    raise STATION_EXIST if @@all_stations.find {|station| station.name == name}
+    raise STATION_EXIST if @@all_stations.find { |station| station.name == name }
   end
 end
