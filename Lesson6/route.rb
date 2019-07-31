@@ -3,7 +3,12 @@ class Route
 
   attr_reader :stations
 
+  ROUTE_STATION = "Начальная станция не может быть конечной"
+  INVALID_TYPE = "Некорректный тип станции"
+
   def initialize(first_station, last_station)
+    @first_station = first_station
+    @last_station = last_station
     @stations = [first_station, last_station]
     validate!
     register_instance
@@ -23,13 +28,15 @@ class Route
 
   def valid?
     validate!
+    true
   rescue
     false
   end
 
+  protected
+
   def validate!
-    raise "Некорректный тип станции" if !@stations.bsearch { |station| station.class != Station }.nil?
-    raise "Станций должно быть >= 2" if @stations.count < 2
-    true
+    raise INVALID_TYPE unless stations.all? { |station| station.is_a?(Station) }
+    raise ROUTE_STATION if @first_station == @last_station
   end
 end

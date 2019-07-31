@@ -5,7 +5,8 @@ class Station
 
   attr_reader :trains, :name
 
-  STATION_NAME_FORMAT = /^[а-яА-Я0-9]+/
+  STATION_NIL = "Имя не может быть пустым"
+  STATION_EXIST = "Станция уже создана"
 
   def initialize(name)
     @trains = {}
@@ -35,12 +36,15 @@ class Station
 
   def valid?
     validate!
+    true
   rescue
     false
   end
 
+  protected
+
   def validate!
-    raise "Некорректное название станции" if name !~STATION_NAME_FORMAT
-    true
+    raise STATION_NIL if name.empty?
+    raise STATION_EXIST if @@all_stations.find {|station| station.name == name}
   end
 end

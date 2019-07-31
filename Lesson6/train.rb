@@ -4,8 +4,10 @@ class Train
 
   attr_reader :speed, :station_index, :route, :wagons, :type, :number
 
-  TRAIN_NUMBER_FORMAT = /^[а-я0-9]{3}(-| )[а-я0-9]{2}$/
+  TRAIN_NUMBER_FORMAT = /^[а-я0-9]{3}(-| )[а-я0-9]{2}$/i
   TRAIN_TYPE = /^(Passenger|Cargo)$/
+  INCORRECT_NUMBER = "Некорректный номер"
+  INCORRECT_TRAIN_TYPE = "Некорректный тип поезда"
 
   @@trains = {}
 
@@ -73,21 +75,21 @@ class Train
       previous_station.arrived(self)
       self.station_index -= 1
     end
+
+    def valid?
+      validate!
+      true
+    rescue
+      false
+    end
   end
 
   protected
 
-  attr_writer :speed, :station_index, :station, :route, :wagons, :type, :number
-
-  def valid?
-    validate!
-  rescue
-    false
-  end
+  attr_writer :speed, :station_index, :route, :wagons, :type, :number
 
   def validate!
-    raise "Некоректный номер" if number !~ TRAIN_NUMBER_FORMAT
-    raise "Некоректный тип поезда" if type !~ TRAIN_TYPE
-    true
+    raise INCORRECT_NUMBER if number !~ TRAIN_NUMBER_FORMAT
+    raise INCORRECT_TRAIN_TYPE if type !~ TRAIN_TYPE
   end
 end

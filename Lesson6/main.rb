@@ -66,7 +66,7 @@ class Main
     @stations.push(Station.new(name))
   rescue StandardError => e
     puts e.message
-    create_station
+    retry
   end
 
   def create_train # создать поезд
@@ -79,7 +79,7 @@ class Main
     end
   rescue StandardError => e
     puts e.message
-    create_train
+    retry
   end
 
   def show_train_type_menu
@@ -99,8 +99,10 @@ class Main
     print "Введите номер конечной: "
     last_station = select_from_collection(@stations)
     return if first_station.nil?
-    return if first_station == last_station
     @routes << Route.new(first_station, last_station)
+  rescue StandardError => e
+    puts e.message
+    retry
   end
 
   def select_from_collection(collection) # выбрать из коллекции
@@ -125,8 +127,10 @@ class Main
 
     show_stations(route.stations)
     station = select_from_collection(route.stations)
-    return if [route.stations.first, route.stations.last].include?(station)
     route.delete(station)
+  rescue StandardError => e
+    puts e.message
+    retry
   end
 
   def show_stations(stations = @stations) # показать станцию
