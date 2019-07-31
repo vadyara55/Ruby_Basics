@@ -70,7 +70,7 @@ class Main
   end
 
   def create_train # создать поезд
-    print "Введите номер поезда в формате XXX-XX или XXX XX: "
+    print "Введите номер поезда в формате XXX-XX или XXXXX: "
     number = gets.chomp
     show_train_type_menu
     case gets.to_i
