@@ -75,21 +75,21 @@ class Train
       previous_station.arrived(self)
       self.station_index -= 1
     end
+  end
 
-    def all_wagons_in_train
-      index = 0
-      @wagons.each do |van|
-        print "#{index += 1}"
-        yield van
-      end
+  def all_wagons_in_train
+    index = 0
+    @wagons.each do |van|
+      print "#{index += 1}"
+      yield van
     end
+  end
 
-    def valid?
-      validate!
-      true
-    rescue
-      false
-    end
+  def valid?
+    validate!
+    true
+  rescue
+    false
   end
 
   protected

@@ -6,10 +6,11 @@ class PassengerWagon < Wagon
     @taked_place = 0
   end
 
-  def take_seat
-    if place > 0
-      @place -= 1
-      @taked_place += 1
+  def take_seat(seats)
+    seats = seats.to_i.abs
+    if place > 0 && place >= seats
+      @place -= seats
+      @taked_place += seats
     end
   end
 end

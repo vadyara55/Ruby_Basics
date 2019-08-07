@@ -10,7 +10,7 @@ class CargoWagon < Wagon
     volume = volume.to_f.abs
     if @place > 0 && @place >= volume
       @place -= volume
-      @taked_place += 1
+      @taked_place += volume
     end
   end
 end

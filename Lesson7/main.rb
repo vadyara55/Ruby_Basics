@@ -154,14 +154,14 @@ class Main
   def show_trains
     puts " Список поездов:"
     @trains.each.with_index(1) do |item, index|
-      puts "#{index} - #{item.number}"
+      puts "#{index} - #{item.number} - #{item.type}"
     end
   end
 
   def wagon_list
     show_trains
-    train = select_from_collection(@trains)
-    train.all_wagons_in_train { |van| puts "No #{van.number} *#{van.type}* Свободно:#{van.place} Занято:#{van.taked_place}" }
+    @train_list = select_from_collection(@trains)
+    @train_list.all_wagons_in_train { |van| puts "№.#{van.number} *#{van.type}* Свободно:#{van.place} Занято:#{van.taked_place}" }
   end
 
   def stations_of_route
@@ -226,13 +226,16 @@ class Main
   def change_wagons_value
     wagon_list
     print "Выберите вагон:"
-    wagon = select_from_collection(@wagons)
+    wagon = select_from_collection(@train_list.wagons)
+
     if wagon.type == "Passenger"
-      wagon.take_seat
+      print "Введите количество занимаемых мест"
+      seats = gets.chomp.to_i
+      wagon.take_seat(seats)
     elsif wagon.type == "Cargo"
       print "Введите занимаемый объем:"
       volume = gets.chomp.to_f
-      return if !(0.138).include?(volume)
+      return if !(0..138).include?(volume)
       wagon.take_volume(volume)
     end
   end
