@@ -33,13 +33,13 @@ class Station
   def departed(train)
     @trains.delete(train.number)
   end
-  def all_trains_on_station
-    index = 0
-    @trains.each do |train|
-      print "#{index += 1}"
-      yield train
+
+  def each_station_with_index
+    @trains.each.with_index(1) do |train, index|
+      yield train, index
     end
   end
+
   def valid?
     validate!
     true

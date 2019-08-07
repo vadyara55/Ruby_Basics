@@ -77,11 +77,9 @@ class Train
     end
   end
 
-  def all_wagons_in_train
-    index = 0
-    @wagons.each do |van|
-      print "#{index += 1}"
-      yield van
+  def each_wagon_with_index
+    @wagons.each.with_index(1) do |van, index|
+      yield van, index
     end
   end
 

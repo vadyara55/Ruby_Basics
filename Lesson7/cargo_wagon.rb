@@ -7,10 +7,6 @@ class CargoWagon < Wagon
   end
 
   def take_volume(volume)
-    volume = volume.to_f.abs
-    if @place > 0 && @place >= volume
-      @place -= volume
-      @taked_place += volume
-    end
+    super
   end
 end
