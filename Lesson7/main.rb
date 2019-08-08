@@ -222,8 +222,8 @@ class Main
     station = select_from_collection(@stations)
     return error if station.nil?
     puts "Список поездов на станции :"
-    station.each_station_with_index do |train, index|
-      puts "№.#{index} - Поезд: #{train.number} - кол-во вагонов: #{train.wagons.count}"
+    station.each_train_with_index do |key, value|
+      puts "№.#{key} - Поезд: #{value.number}, тип поезда - #{value.type} - кол-во вагонов: #{value.wagons.count}"
     end
   end
 
