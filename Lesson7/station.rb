@@ -11,7 +11,6 @@ class Station
   def initialize(name)
     @trains = {}
     @name = name
-    @index = 0
     validate!
     @@all_stations.push(self)
     register_instance
@@ -22,7 +21,7 @@ class Station
   end
 
   def arrived(train)
-    self.trains[@index += 1] = train
+    @trains[number] = train
   end
 
   def type(type)
@@ -36,8 +35,8 @@ class Station
   end
 
   def each_train_with_index
-    @trains.each do |key, value|
-      yield key, value
+    @trains.values.each_with_index do |train, value|
+      yield train, value
     end
   end
 

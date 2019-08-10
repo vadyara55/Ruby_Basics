@@ -1,9 +1,7 @@
 class CargoWagon < Wagon
   def initialize(volume)
-    @number = 5.times.map { rand(0..9) }.join
+    super
     @type = "Cargo"
-    @place = volume.to_f.abs
-    @taked_place = 0
   end
 
   def take_volume(volume)

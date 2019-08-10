@@ -162,7 +162,7 @@ class Main
     show_trains
     @train_list = select_from_collection(@trains)
     @train_list.each_wagon_with_index do |van, index|
-      puts "№.#{index} *#{van.type}* Свободно:#{van.place} Занято:#{van.taked_place}"
+      puts "№.#{index} *#{van.number}* Объем вагона:#{van.total_place} Занято:#{van.taked_place}"
     end
   end
 
@@ -186,16 +186,15 @@ class Main
 
     if train.type == "Passenger"
       print "Введите количество мест (от 16 до 54):"
-      seats = gets.chomp.to_i
-      return if !(16..54).include?(seats)
-      wagon = PassengerWagon.new(seats)
+      volume = gets.chomp.to_i
+      return if !(16..54).include?(volume)
+      wagon = PassengerWagon.new(volume)
     elsif train.type == "Cargo"
       print "ВВедите объем вагона (от 88 до 138):"
       volume = gets.chomp.to_f
       return if !(88.0..138.0).include?(volume)
       wagon = CargoWagon.new(volume)
     end
-
     train.attach_wagon(wagon)
   end
 
@@ -222,8 +221,8 @@ class Main
     station = select_from_collection(@stations)
     return error if station.nil?
     puts "Список поездов на станции :"
-    station.each_train_with_index do |key, value|
-      puts "№.#{key} - Поезд: #{value.number}, тип поезда - #{value.type} - кол-во вагонов: #{value.wagons.count}"
+    station.each_train_with_index do |train, value|
+      puts "№.#{value} - Поезд: #{train.number}, тип поезда - #{train.type} - кол-во вагонов: #{train.wagons.count}"
     end
   end
 
@@ -237,9 +236,11 @@ class Main
     elsif wagon.type == "Cargo"
       print "Введите занимаемый объем:"
       volume = gets.chomp.to_f
-      return if !(0..138).include?(volume)
       wagon.take_volume(volume)
     end
+  rescue StandardError => e
+    puts e.message
+    retry
   end
 
   def blank
