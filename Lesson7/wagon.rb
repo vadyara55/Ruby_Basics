@@ -12,9 +12,9 @@ class Wagon
   end
 
   def take_volume(volume)
-    @volume = volume.to_f.abs
-    validate!
-    @taked_place += @volume
+    volume = volume.to_f.abs
+    validate_taking_volume!(volume)
+    @taked_place += volume
     available_place
   end
 
@@ -31,7 +31,7 @@ class Wagon
 
   protected
 
-  def validate!
-    raise WAGON_PLACE if available_place <= @volume
+  def validate_taking_volume!(volume)
+    raise WAGON_PLACE if volume > available_place
   end
 end

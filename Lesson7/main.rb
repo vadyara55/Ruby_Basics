@@ -187,15 +187,17 @@ class Main
     if train.type == "Passenger"
       print "Введите количество мест (от 16 до 54):"
       volume = gets.chomp.to_i
-      return if !(16..54).include?(volume)
       wagon = PassengerWagon.new(volume)
     elsif train.type == "Cargo"
       print "ВВедите объем вагона (от 88 до 138):"
       volume = gets.chomp.to_f
-      return if !(88.0..138.0).include?(volume)
       wagon = CargoWagon.new(volume)
     end
     train.attach_wagon(wagon)
+
+  rescue StandardError => e
+    puts e.message
+    retry
   end
 
   def detach_wagon
