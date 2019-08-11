@@ -21,7 +21,7 @@ class Station
   end
 
   def arrived(train)
-    @trains[number] = train
+    @trains[train.number] = train
   end
 
   def type(type)
@@ -35,7 +35,7 @@ class Station
   end
 
   def each_train_with_index
-    @trains.values.each_with_index do |train, value|
+    @trains.values.each.with_index(1) do |train, value|
       yield train, value
     end
   end
