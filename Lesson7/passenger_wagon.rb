@@ -1,5 +1,7 @@
 class PassengerWagon < Wagon
-  SPACE_VOLUME = "Введено неверное количество"
+  MIN_VOLUME = 16
+  MAX_VOLUME = 54
+  INVALID_VOLUME = "Введено неверное количество"
   def initialize(volume)
     super
     @type = "Passenger"
@@ -20,6 +22,6 @@ class PassengerWagon < Wagon
   protected
 
   def validate!(volume)
-    raise SPACE_VOLUME if !(16..54).include?(volume)
+    raise INVALID_VOLUME unless volume.between?(MIN_VOLUME, MAX_VOLUME)
   end
 end
