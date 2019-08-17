@@ -1,7 +1,7 @@
 class PassengerWagon < Wagon
   MIN_VOLUME = 16
   MAX_VOLUME = 54
-  INVALID_VOLUME = 'Введено неверное количество'
+  INVALID_VOLUME = 'Введено неверное количество'.freeze
   def initialize(volume)
     super
     @type = 'Passenger'

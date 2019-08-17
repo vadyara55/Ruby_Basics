@@ -3,8 +3,8 @@ class Route
 
   attr_reader :stations
 
-  ROUTE_STATION = 'Начальная станция не может быть конечной'
-  INVALID_TYPE = 'Некорректный тип станции'
+  ROUTE_STATION = 'Начальная станция не может быть конечной'.freeze
+  INVALID_TYPE = 'Некорректный тип станции'.freeze
 
   def initialize(first_station, last_station)
     @first_station = first_station

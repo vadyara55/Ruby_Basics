@@ -6,8 +6,8 @@ class Train
 
   TRAIN_NUMBER_FORMAT = /^[а-я0-9]{3}-?[а-я0-9]{2}$/i
   TRAIN_TYPE = /^(Passenger|Cargo)$/
-  INCORRECT_NUMBER = 'Некорректный номер'
-  INCORRECT_TRAIN_TYPE = 'Некорректный тип поезда'
+  INCORRECT_NUMBER = 'Некорректный номер'.freeze
+  INCORRECT_TRAIN_TYPE = 'Некорректный тип поезда'.freeze
 
   @@trains = {}
 
@@ -62,19 +62,15 @@ class Train
   end
 
   def move_forward
-    if next_station
-      current_station.departed(self)
-      next_station.arrived(self)
-      self.station_index += 1
-    end
+    current_station.departed(self)
+    next_station.arrived(self)
+    self.station_index += 1
   end
 
   def move_back
-    if previous_station
-      current_station.departed(self)
-      previous_station.arrived(self)
-      self.station_index -= 1
-    end
+    current_station.departed(self)
+    previous_station.arrived(self)
+    self.station_index -= 1
   end
 
   def each_wagon_with_index

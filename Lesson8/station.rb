@@ -5,8 +5,8 @@ class Station
 
   attr_reader :trains, :name
 
-  STATION_NIL = 'Имя не может быть пустым'
-  STATION_EXIST = 'Станция уже создана'
+  STATION_NIL = 'Имя не может быть пустым'.freeze
+  STATION_EXIST = 'Станция уже создана'.freeze
 
   def initialize(name)
     @trains = {}

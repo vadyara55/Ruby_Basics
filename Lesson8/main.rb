@@ -26,12 +26,14 @@ class Main
     'Посмотреть список вагонов поезда',
     'Занять место или объем в вагоне'
   ].freeze
+
   def initialize
     @stations = []
     @routes = []
     @trains = []
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def run
     loop do
       show_main_menu
@@ -55,6 +57,7 @@ class Main
       end
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def show_main_menu
     MENU.each.with_index(1) do |item, index|
